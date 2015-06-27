@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="<?php echo Blog::language() ?>">
+<head>
+<?php
+
+	// Charset, title, description, keywords, robots, etc
+	echo Blog::meta_tags();
+
+	// Include CSS
+	echo Blog::css(array('main.css?version=rand();', 'normalize.css?version=rand();', 'page.css?version=rand()', 'plugins.css?version=rand()', 'post.css?version=rand()', 'rainbow_github.css'));
+
+	// Include Jquery
+	echo Blog::jquery();
+
+	// Include Javascript
+	echo Blog::javascript(array('rainbow-custom.min.js', 'sidebar.js', 'taglist.js'));
+
+	// Include Favicon
+	echo Blog::favicon();
+
+	// Plugins for <head></head>
+	foreach($plugins as $plugin)
+	{
+		echo $plugin->blog_head();
+	}
+?>
+</head>
+<body>
+
+	<!-- HEADER -->
+	<header id="head">
+		<?php if(!empty($plugins))
+		{
+			echo '<a id="sidebutton" onclick="toggleSidebar()"></a>';
+			echo '<div id="name" style="margin-left: 2em">';
+		} else {
+			echo '<div id="name">';
+		}
+		?>
+			<a href="<?php echo Blog::url() ?>"><?php echo Blog::name() ?></a>
+		</div>
+		<?php if( !empty($theme['nav_links']) )
+		{
+			echo '<nav id="navbar">';
+				foreach($theme['nav_links'] as $link)
+					echo $link;
+			echo '</nav>';
+		}
+		?>
+	</header>
+
+	<!-- SIDEBAR -->
+	<?php if(!empty($plugins))
+	{
+		echo '<section id="sidebar" class="closed">';
+			foreach($plugins_sidebar as $plugin)
+			{
+				if($plugin->blog_body())
+				{
+					echo '<h2>'.$plugin->database('title').'</h2>';
+					echo $plugin->blog_body();
+				}
+			}
+		echo '</section>';
+	}
+	?>
+
+	<!-- MAIN -->
+	<section id="main">
+		<?php include(THEME_VIEWS.$layout['view']); ?>
+	</section>
+
+	<!-- FOOTER -->
+	<footer id="foot">
+		<?php if (!empty($theme['content_license']))
+		{
+			echo '<div class="license">';
+			echo $theme['content_license'];
+			echo '</div>';
+		}
+		?>
+		<div class="atom">
+			<small>Powered by Microsoft Notepad for Workgroups 3.11 · </small><a href="<?php echo $layout['feed'] ?>">Atom</a><!-- <?php echo Blog::footer() ?><br />
+			<a target="_blank" href="https://github.com/RMed/techie_theme">Techie theme</a> -->
+		</div>
+	</footer>
+	<div id="floatyfooter">
+		<a href="https://cryptostorm.is/map" target="_blank">ƨiťemåƥ</a> | <a href="https://chat.cryptostorm.is/" target="_blank">iᴚc cĦat</a> | <a href="https://cryptostorm.org/viewforum.php?f=47" target="_blank">creðibility</a> | <a href="https://cryptostorm.org/viewforum.php?f=49" target="_blank">cø-marketing</a> | <a href="https://cryptostorm.org/viewforum.php?f=51" target="_blank">misç</a>
+	</div>
+</body>
+</html>

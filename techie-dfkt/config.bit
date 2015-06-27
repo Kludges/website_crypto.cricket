@@ -1,0 +1,30 @@
+<?php
+
+$theme = array
+(
+	'name'=>'Techie-DFKT-Cryptostorm',
+	'description'=>'A theme inspired by Gaia/Firefox OS, fake root certs, Mike "test2" Espresso, and pancakes',
+	'notes'=>'<s>Disqus and Facebook comments support</s>, custom navigation bar, <s>social buttons</s> and license placeholder configurable in config.bit',
+	'author'=>'Rafael Medina García (http://www.rmedgar.com/) & dfkt',
+	'version'=>'0.1',
+	'last_update'=>'2015-02-25',
+	'url'=>'https://cryptostorm.is/',
+	'template'=>array(
+		'blog'=>'default.bit',
+		'post'=>'default.bit',
+		'page'=>'default.bit'),
+	'video_width'=>'640',
+	'video_height'=>'360',
+	'version_supported'=>array('4.0','4.0.1','4.0.2','4.0.3'), // Nibbleblog version supported
+
+	// --- Custom settings ---
+	'content_license'=>'&copy;&reg;&trade;/0', // This content appears on the bottom left part of the page
+	'share_buttons'=>True, // True: display buttons; False: hide buttons
+	'nav_links'=>array (
+		// Navigation links are configured here, the structure is as follows:
+		// '<a href="LINK">TEXT OF THE LINK</a>',
+		// '<a href="'.HTML_PATH_ROOT.'">'.$Language->get('HOME').'</a>',
+	)
+);
+
+?>
